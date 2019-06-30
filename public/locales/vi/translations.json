@@ -1,0 +1,8 @@
+{
+    "welcomeMsg": "welcome vn",
+    "nested": {
+      "startMsg": "start msg vn"
+    },
+    "multiLine": "break line \n break line \n break line \n"
+  }
+  

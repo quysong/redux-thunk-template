@@ -1,0 +1,8 @@
+{
+    "welcomeMsg": "welcome",
+    "nested": {
+      "startMsg": "just start"
+    },
+    "multiLine": "This sentence \nshould split into \ntwo lines."
+  }
+  

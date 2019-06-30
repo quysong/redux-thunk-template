@@ -5,6 +5,8 @@ import PublicPage from './screens/PublicPage/PublicPage';
 import ProtectedPage from './screens/ProtectedPage/ProtectedPage';
 import PageNotFound from './screens/PageNotFound';
 import ListEmployee from './screens/ListEmployee/ListEmployee';
+import { translate, Trans } from "react-i18next";
+import ChangeLanguage from "./components/changeLanguage";
 
 function App() {
   return (
@@ -27,9 +29,15 @@ function App() {
           <Route path="/public" component={PublicPage} />
           <Route path="/employee" component={ListEmployee} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/protected" component={ProtectedPage}/>
+          <PrivateRoute path="/protected" component={ProtectedPage} />
           <Route component={PageNotFound} />
         </Switch>
+        <hr></hr>
+        Multilang
+        <h2 style={{ whiteSpace: "pre-line" }}>
+          <Trans i18nKey="multiLine" />
+        </h2>
+        <ChangeLanguage />
       </div>
     </Router>
   );
@@ -109,4 +117,5 @@ class Login extends Component {
   }
 }
 
-export default App;
+// export default App;
+export default translate("translations")(App);
