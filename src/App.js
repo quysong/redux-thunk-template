@@ -5,42 +5,48 @@ import PublicPage from './screens/PublicPage/PublicPage';
 import ProtectedPage from './screens/ProtectedPage/ProtectedPage';
 import PageNotFound from './screens/PageNotFound';
 import ListEmployee from './screens/ListEmployee/ListEmployee';
-import { translate, Trans } from "react-i18next";
-import ChangeLanguage from "./components/changeLanguage";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <AuthButton />
-        <ul>
-          <li>
-            <Link to="/public">Public Page</Link>
-          </li>
-          <li>
-            <Link to="/employee">Employee</Link>
-          </li>
-          <li>
-            <Link to="/protected">Protected Page</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/" exact component={PublicPage} />
-          <Route path="/public" component={PublicPage} />
-          <Route path="/employee" component={ListEmployee} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/protected" component={ProtectedPage} />
-          <Route component={PageNotFound} />
-        </Switch>
-        <hr></hr>
-        Multilang
-        <h2 style={{ whiteSpace: "pre-line" }}>
-          <Trans i18nKey="multiLine" />
-        </h2>
-        <ChangeLanguage />
-      </div>
-    </Router>
-  );
+import { translate } from 'react-i18next';
+
+class App extends Component  {
+  render(){
+    const { t, i18n } = this.props;
+    return (
+      <Router>
+        <div>
+          <AuthButton />
+          <ul>
+            <li>
+              <Link to="/public">Public Page</Link>
+            </li>
+            <li>
+              <Link to="/employee">Employee</Link>
+            </li>
+            <li>
+              <Link to="/protected">Protected Page</Link>
+            </li>
+          </ul>
+          <Switch>
+            <Route path="/" exact component={PublicPage} />
+            <Route path="/public" component={PublicPage} />
+            <Route path="/employee" component={ListEmployee} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/protected" component={ProtectedPage} />
+            <Route component={PageNotFound} />
+          </Switch>
+          <hr></hr>
+          <div style={{ whiteSpace: "pre-line" }}>
+          <button onClick={() => i18n.changeLanguage('vi')}>vi</button>
+          <button onClick={() => i18n.changeLanguage('en')}>en</button>
+          {t('welcome.title', { framework: "react-i18next" })}
+          <br></br>
+          {t('welcome.intro')}
+        </div>
+
+        </div>
+      </Router>
+    );
+  }
 }
 
 const fakeAuth = {
@@ -118,4 +124,4 @@ class Login extends Component {
 }
 
 // export default App;
-export default translate("translations")(App);
+export default translate('common')(App);
