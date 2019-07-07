@@ -1,0 +1,13 @@
+
+.my-content{
+      font-size: 50px;
+      margin: 20px;
+      height: 100%;
+  }
+  ul.my-menu li a{
+      color:#a6adb4;
+  }
+  ul.my-menu li.ant-menu-item-selected a{
+    color:#fff;
+}
+  

@@ -7,44 +7,57 @@ import PageNotFound from './screens/PageNotFound';
 import ListEmployee from './screens/ListEmployee/ListEmployee';
 
 import { translate } from 'react-i18next';
+import MyAntDesign from './screens/MyAntDesign/antDesign';
+import MyDevExtreme from './screens/MyDevExtreme/MyDevExtreme';
 
-class App extends Component  {
-  render(){
+class App extends Component {
+  render() {
     const { t, i18n } = this.props;
     return (
-      <Router>
-        <div>
-          <AuthButton />
-          <ul>
-            <li>
-              <Link to="/public">Public Page</Link>
-            </li>
-            <li>
-              <Link to="/employee">Employee</Link>
-            </li>
-            <li>
-              <Link to="/protected">Protected Page</Link>
-            </li>
-          </ul>
-          <Switch>
-            <Route path="/" exact component={PublicPage} />
-            <Route path="/public" component={PublicPage} />
-            <Route path="/employee" component={ListEmployee} />
-            <Route path="/login" component={Login} />
-            <PrivateRoute path="/protected" component={ProtectedPage} />
-            <Route component={PageNotFound} />
-          </Switch>
-          <hr></hr>
-          <div style={{ whiteSpace: "pre-line" }}>
-          <button onClick={() => i18n.changeLanguage('vi')}>vi</button>
-          <button onClick={() => i18n.changeLanguage('en')}>en</button>
-          {t('welcome.title', { framework: "react-i18next" })}
-          <br></br>
-          {t('welcome.intro')}
-        </div>
+      <>
+        <Router>
+          <div>
+            <AuthButton />
+            <ul>
+              <li>
+                <Link to="/public">Public Page</Link>
+              </li>
+              <li>
+                <Link to="/employee">Employee</Link>
+              </li>
+              <li>
+                <Link to="/protected">Protected Page</Link>
+              </li>
+              <li>
+                <Link to="/antd">Ant Design</Link>
+              </li>
+              <li>
+                <Link to="/devextreme">Devextreme</Link>
+              </li>
+            </ul>
+            <Switch>
+              <Route path="/" exact component={PublicPage} />
+              <Route path="/public" component={PublicPage} />
+              <Route path="/employee" component={ListEmployee} />
+              <Route path="/login" component={Login} />
+              <Route path="/antd" component={MyAntDesign} />
+              <Route path="/devextreme" component={MyDevExtreme} />
+              <PrivateRoute path="/protected" component={ProtectedPage} />
+              <Route component={PageNotFound} />
+            </Switch>
+            {/* <hr></hr>
+            <div style={{ whiteSpace: "pre-line" }}>
+              <button onClick={() => i18n.changeLanguage('vi')}>vi</button>
+              <button onClick={() => i18n.changeLanguage('en')}>en</button>
+              {t('welcome.title', { framework: "react-i18next" })}
+              <br></br>
+              {t('welcome.intro')}
+            </div> */}
 
-        </div>
-      </Router>
+          </div>
+        </Router>
+      </>
+
     );
   }
 }
