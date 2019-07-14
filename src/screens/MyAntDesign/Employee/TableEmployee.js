@@ -104,18 +104,22 @@ class TableEmployee extends Component {
     super(props);
     this.columns = [
       {
-        title: 'name',
+        title: 'NAME',
         dataIndex: 'name',
         width: '30%',
         editable: true,
       },
       {
-        title: 'age',
-        dataIndex: 'age',
+        title: 'MAIL',
+        dataIndex: 'name',
       },
       {
-        title: 'address',
+        title: 'ADDRESS',
         dataIndex: 'address',
+      },
+      {
+        title: 'PHONE',
+        dataIndex: 'phone',
       },
       {
         title: 'operation',
@@ -135,15 +139,10 @@ class TableEmployee extends Component {
         {
           key: '0',
           name: 'Edward King 0',
-          age: '32',
+          mail: '32',
           address: 'London, Park Lane no. 0',
-        },
-        {
-          key: '1',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
+          phone: '0123456',
+        }
       ],
       count: 2,
     };

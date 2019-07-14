@@ -2,7 +2,7 @@ import * as Types from './constants'
 import axios from 'axios';
 // import {store} from './../../redux/reduxStore'
 
-const url='http://localhost:2020/employee';
+const url='http://localhost:8800/employee';
 
 // axios.defaults.headers.common['Authorization'] = 'ValueToken';
 axios.defaults.headers.common['Content-Type'] = 'application/json';

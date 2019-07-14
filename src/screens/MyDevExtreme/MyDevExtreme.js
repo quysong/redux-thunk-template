@@ -7,6 +7,8 @@ import { SelectBox } from 'devextreme-react/select-box';
 import CustomStore from 'devextreme/data/custom_store';
 import { formatDate } from 'devextreme/localization';
 import 'whatwg-fetch';
+import EditableTable from './EditiableTable/EditiableTable';
+import EditingEventTracking from './EditingEventTracking/EditingEventTracking';
 
 const URL = 'https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi';
 const REFRESH_MODES = ['full', 'reshape', 'repaint'];
@@ -154,6 +156,13 @@ class MyDevExtreme extends Component {
                 <TotalItem column={'Freight'} summaryType={'sum'} valueFormat={'#0.00'} />
               </Summary>
             </DataGrid>
+            
+            <hr></hr>
+            <hr></hr>
+            <EditableTable></EditableTable>
+            <hr></hr>
+            <hr></hr>
+            <EditingEventTracking></EditingEventTracking>
           </React.Fragment>
         );
       }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+
 import { BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch } from "react-router-dom";
 import PublicPage from './screens/PublicPage/PublicPage';
 import ProtectedPage from './screens/ProtectedPage/ProtectedPage';
@@ -9,6 +9,11 @@ import ListEmployee from './screens/ListEmployee/ListEmployee';
 import { translate } from 'react-i18next';
 import MyAntDesign from './screens/MyAntDesign/antDesign';
 import MyDevExtreme from './screens/MyDevExtreme/MyDevExtreme';
+
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+
+import './App.css';
 
 class App extends Component {
   render() {
