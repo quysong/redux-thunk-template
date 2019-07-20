@@ -14,35 +14,31 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import { Item } from 'devextreme-react/form';
 import axios from 'axios';
-const url='http://localhost:8800/employee';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 class EditableTable extends Component {
-    onEditorEnterKey=()=>{
+    onEditorEnterKey = () => {
         console.log('onEditorEnterKey')
     }
     componentDidMount() {
         this.props.onGetEmployee();
-      }
-      onRowUpdatingCustom=(e)=>{
-          console.log('onRowUpdatingCustom', e)
-      }
-    onRowRemoving = (e) => {
-        console.log('onRowRemoving', e)
-        let id = 11;
-        // Call api delete
-        // axios
-        //     .delete(url+'/'+id)
-        //     .then(res => {
-        //         console.log('res', res)
-        //     })
-        //     .catch(err => {
-        //         console.log(err.message);
-        //     });
-        //
     }
-    onRowInsertingCustom=(e)=>{
-        console.log('onRowInserting', e)
+    onRowUpdatingCustom = (e) => {
+    }
+    onRowRemoving = (e) => {
+        let id = e.data.id;
+        var result = this.props.onDeleteEmployee(id);
+    }
+    componentWillReceiveProps = (nextProps) => {
+        console.log('nextProps', nextProps)
+    }
+    onRowInsertingCustom = (e) => {
+        console.log('this.props.employees 1', this.props.employees)
+
+        let newEmployee = e.data;
+        // Call api Insert
+        this.props.onInsertEmployee(newEmployee);
+
+        console.log('this.props.employees 2', this.props.employees)
     }
     render() {
         console.log('this.props.employees;', this.props.employees);
@@ -52,9 +48,9 @@ class EditableTable extends Component {
                     dataSource={this.props.employees}
                     keyExpr={'id'}
                     showBorders={true}
-                    onRowInserting={(e)=>this.onRowInsertingCustom(e)}
-                    onRowUpdating={(e)=>this.onRowUpdatingCustom(e)}
-                    onRowRemoving={(e)=>this.onRowRemoving(e)}
+                    onRowInserting={(e) => this.onRowInsertingCustom(e)}
+                    onRowUpdating={(e) => this.onRowUpdatingCustom(e)}
+                    onRowRemoving={(e) => this.onRowRemoving(e)}
                 >
                     <Paging enabled={false} />
                     <Editing
@@ -62,11 +58,11 @@ class EditableTable extends Component {
                         allowUpdating={true}
                         allowAdding={true}
                         allowDeleting={true}
-                        >
+                    >
                         <Popup title={'Employee Info'} showTitle={true} width={700} height={525}>
                             <Position my={'top'} at={'top'} of={window} />
                         </Popup>
-                        <Form onEditorEnterKey={()=>this.onEditorEnterKey()}>
+                        <Form onEditorEnterKey={() => this.onEditorEnterKey()}>
                             <Item itemType={'group'} colCount={2} colSpan={2}>
                                 <Item dataField={'name'} />
                                 <Item dataField={'mail'} />
@@ -79,7 +75,7 @@ class EditableTable extends Component {
                     <Column dataField={'name'} />
                     <Column dataField={'address'} />
                     <Column dataField={'mail'} />
-                    <Column dataField={'phone'}/>
+                    <Column dataField={'phone'} />
                 </DataGrid>
             </div>
         );
@@ -88,20 +84,26 @@ class EditableTable extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      employees: state.employee.employeeArr
+        employees: state.employee.employeeArr
     }
-  }
-  
-  const mapDispatchToProps = (dispatch, props) => {
+}
+
+const mapDispatchToProps = (dispatch, props) => {
     return {
-      onGetEmployee: () => {
-        dispatch(actions.getEmployee());
-      },
-      onDeleteEmployee: (id) => {
-        dispatch(actions.deleteEmployee(id));
-      }
+        onGetEmployee: () => {
+            dispatch(actions.getEmployee());
+        },
+        onDeleteEmployee: (id) => {
+            dispatch(actions.deleteEmployee(id));
+        },
+        onInsertEmployee: (obj) => {
+            dispatch(actions.insertEmployee(obj));
+        },
+        onEditEmployee: (obj) => {
+            dispatch(actions.editEmployee(obj));
+        }
     }
-  }
+}
 
 // export default EditableTable;
 export default connect(mapStateToProps, mapDispatchToProps)(EditableTable)

@@ -30,19 +30,11 @@ var employee = (state = iniState, action) => {
             return { ...state };
 
         case Types.INSERT_EMPLOYEE:
-            console.log('Types.INSERT_EMPLOYEE', action.payload)
             return { ...state };
         case Types.INSERT_EMPLOYEE_SUCCESS:
-            console.log('action.payload', action.payload)
-                var newObj={...action.payload};
-                console.log('state.newObj', newObj)
-                var newArr =  [...state.employeeArr];
-                newArr.push(newObj);
-                console.log('newArr', newArr)
-                return {
-                    ...state,
-                    employeeArr:newArr
-                };
+                let id = action.payload.id;
+                state.employeeArr[state.employeeArr.length-1].id = id;
+                return { ...state };
         case Types.INSERT_EMPLOYEE_FAILURE:
             console.log('Types.INSERT_EMPLOYEE_FAILURE', action.payload)
             return { ...state };
@@ -61,11 +53,11 @@ var employee = (state = iniState, action) => {
             return { ...state };
 
         case Types.DELETE_EMPLOYEE:
+                console.log('DELETE_EMPLOYEE state', state)
             return { ...state };
         case Types.DELETE_EMPLOYEE_SUCCESS:
-            var newState = { ...state };
-            newState.employeeArr = newState.employeeArr.filter(el => el.id !== action.payload)
-            return { ...newState };
+            console.log('DELETE_EMPLOYEE_SUCCESS state', state)
+            return  { ...state };
         case Types.DELETE_EMPLOYEE_FAILURE:
             return { ...state };
         default:
