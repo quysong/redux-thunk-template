@@ -38,8 +38,8 @@ class EditingEventTracking extends Component {
       onInitNewRowCustom=()=>{
         console.log('onInitNewRowCustom');
       }
-      onRowUpdatingCustom=()=>{
-        console.log('onRowUpdatingCustom');
+      onRowUpdatingCustom=(e)=>{
+        console.log('onRowUpdatingCustom', e);
       }
     render() { 
         console.log('render')
@@ -55,7 +55,7 @@ class EditingEventTracking extends Component {
                 onInitNewRow={()=>this.onInitNewRowCustom()}
                 onRowInserting={this.onRowInserting}
                 onRowInserted={this.onRowInserted}
-                onRowUpdating={()=>this.onRowUpdatingCustom()}
+                onRowUpdating={(e)=>this.onRowUpdatingCustom(e)}
                 onRowUpdated={this.onRowUpdated}
                 onRowRemoving={this.onRowRemoving}
                 onRowRemoved={this.onRowRemoved}>

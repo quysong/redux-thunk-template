@@ -18,7 +18,7 @@ var employee = (state = iniState, action) => {
         case Types.FETCH_EMPLOYEE_SUCCESS:
             state.employeeArr = action.payload;
             console.log('state', state.employeeArr)
-            return  { ...state } ;
+            return { ...state };
         case Types.FETCH_EMPLOYEE_FAILURE:
             return { ...state };
 
@@ -32,32 +32,56 @@ var employee = (state = iniState, action) => {
         case Types.INSERT_EMPLOYEE:
             return { ...state };
         case Types.INSERT_EMPLOYEE_SUCCESS:
-                let id = action.payload.id;
-                state.employeeArr[state.employeeArr.length-1].id = id;
-                return { ...state };
+            var newObj = { ...action.payload };
+            var newArr = [...state.employeeArr];
+            newArr.push(newObj);
+            return {
+                ...state,
+                employeeArr: newArr
+            };
+
+        // ---For devextreme---
+
+        // let id = action.payload.id;
+        // state.employeeArr[state.employeeArr.length-1].id = id;
+        // return { ...state };
         case Types.INSERT_EMPLOYEE_FAILURE:
             console.log('Types.INSERT_EMPLOYEE_FAILURE', action.payload)
             return { ...state };
 
         case Types.UPDATE_EMPLOYEE:
+            let id = action.payload.id;
+            state.employeeArr[state.employeeArr.length - 1].id = id;
             return { ...state };
+
+        // ---For devextreme---
+        // return { ...state };
         case Types.UPDATE_EMPLOYEE_SUCCESS:
-            var newArr = [...state.employeeArr];
-            var foundIndex = newArr.findIndex(x => x.Id === action.payload.Id);
-            newArr[foundIndex] = action.payload;
-            return {
-                ...state,
-                employeeArr: newArr
-            };
+            // var newArr = [...state.employeeArr];
+            // var foundIndex = newArr.findIndex(x => x.Id === action.payload.Id);
+            // newArr[foundIndex] = action.payload;
+            // return {
+            //     ...state,
+            //     employeeArr: newArr
+            // };
+
+            // ---For devextreme---
+            return { ...state };
         case Types.UPDATE_EMPLOYEE_FAILURE:
             return { ...state };
 
         case Types.DELETE_EMPLOYEE:
-                console.log('DELETE_EMPLOYEE state', state)
+            console.log('DELETE_EMPLOYEE state', state)
             return { ...state };
         case Types.DELETE_EMPLOYEE_SUCCESS:
-            console.log('DELETE_EMPLOYEE_SUCCESS state', state)
-            return  { ...state };
+
+            var newState = { ...state };
+            newState.employeeArr = newState.employeeArr.filter(el => el.id !== action.payload)
+            return { ...newState };
+
+        // ---For devextreme---
+        // console.log('DELETE_EMPLOYEE_SUCCESS state', state)
+        // return  { ...state };
         case Types.DELETE_EMPLOYEE_FAILURE:
             return { ...state };
         default:

@@ -80,6 +80,7 @@ const insertEmployeeFailure = error => ({
 });
 
 export const editEmployee=(employee)=>{
+  console.log('employee', employee)
   return (dispatch )=>{
     dispatch({ type: Types.UPDATE_EMPLOYEE });
     return axios

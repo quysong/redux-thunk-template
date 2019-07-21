@@ -14,6 +14,7 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import { Item } from 'devextreme-react/form';
 import axios from 'axios';
+import { object } from 'prop-types';
 
 class EditableTable extends Component {
     onEditorEnterKey = () => {
@@ -23,6 +24,8 @@ class EditableTable extends Component {
         this.props.onGetEmployee();
     }
     onRowUpdatingCustom = (e) => {
+        let obj= Object.assign(e.oldData, e.newData);
+        this.props.onEditEmployee(obj);
     }
     onRowRemoving = (e) => {
         let id = e.data.id;
